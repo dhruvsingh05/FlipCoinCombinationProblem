@@ -26,6 +26,9 @@ do
          coin[T]=$(( "${coin[T]}" + 1 ))
 fi
 done
+a[0]=${coin[H]}
+a[1]=${coin[T]}
+
 c_h=`awk "BEGIN {print (${coin[H]}*100)/$x}"`
 c_t=`awk "BEGIN {print (${coin[T]}*100)/$x}"`
 echo "(H) head percentage" $c_h
@@ -61,6 +64,10 @@ then
 	 coin[TH]=$(( "${coin[TH]}" + 1 ))
 fi
 done
+a[2]=${coin[HH]}
+a[3]=${coin[TT]}
+a[4]=${coin[HT]}
+a[5]=${coin[TH]}
 
 c_hh=`awk "BEGIN {print (${coin[HH]}*100)/$x}"`
 c_tt=`awk "BEGIN {print (${coin[TT]}*100)/$x}"`
@@ -129,6 +136,15 @@ then
          coin[ttt]=$(( "${coin[ttt]}" + 1 ))
 fi
 done
+a[6]=${coin[hhh]}
+a[7]=${coin[hht]}
+a[8]=${coin[hth]}
+a[9]=${coin[htt]}
+a[10]=${coin[thh]}
+a[11]=${coin[tht]}
+a[12]=${coin[tth]}
+a[13]=${coin[ttt]}
+
 
 c_hhh=`awk "BEGIN {print (${coin[hhh]}*100)/$x}"`
 c_hht=`awk "BEGIN {print (${coin[hht]}*100)/$x}"`
@@ -146,3 +162,87 @@ echo "(thh)  percentage" $c_thh
 echo "(tht)  percentage" $c_tht
 echo "(tth)  percentage" $c_tth
 echo "(ttt)  percentage" $c_ttt
+
+echo ${a[@]}
+echo "sorting"
+for (( m=0;m<13; m++))
+do
+
+    for(( j=($m+1);j<14;j++ ))
+    do
+
+        if [ ${a[m]} -gt ${a[j]} ]
+        then
+            # swap
+            temp=${a[m]}
+            a[$m]=${a[j]}
+            a[$j]=$temp
+        fi
+    done
+done
+
+echo ${a[@]}
+
+
+echo "winner"
+if [ ${a[13]} -eq ${coin[hhh]} ]
+then
+         echo "HHH"
+fi
+if [ ${a[13]}  -eq ${coin[hht]}  ]
+then
+        echo "HHT"
+fi
+if [ ${a[13]}  -eq ${coin[hth]} ]
+then
+         echo "HTH"
+fi
+if [ ${a[13]} -eq ${coin[htt]}  ]
+then
+         echo "HTT"
+fi
+
+if [ ${a[13]}  -eq ${coin[thh]}  ]
+then
+         echo "THH"
+fi
+if [ ${a[13]}  -eq ${coin[tht]}  ]
+then
+        echo "THT"
+fi
+if [ ${a[13]}  -eq ${coin[tth]}  ]
+then
+         echo "TTH"
+fi
+if [ ${a[13]}  -eq ${coin[ttt]}  ]
+then
+         echo "TTT"
+fi
+
+
+if [ ${a[13]}  -eq ${coin[HH]} ]
+then
+         echo "HH"
+fi
+if [ ${a[13]} -eq ${coin[TT]}  ]
+then
+         echo "TT"
+fi
+
+if [ ${a[13]}  -eq ${coin[HT]}  ]
+then
+         echo "HT"
+fi
+if [ ${a[13]}  -eq ${coin[TH]}  ]
+then
+        echo "TH"
+fi
+if [ ${a[13]}  -eq ${coin[H]}  ]
+then
+         echo "H"
+fi
+if [ ${a[13]}  -eq ${coin[T]}  ]
+then
+         echo "T"
+fi
+
