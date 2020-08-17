@@ -70,3 +70,79 @@ echo "(HH)  percentage" $c_hh
 echo "(TT)  percentage" $c_tt
 echo "(HT)  percentage" $c_ht
 echo "(TH)  percentage" $c_th
+
+
+echo "Three coins "
+coin[hhh]=0
+coin[hht]=0
+coin[hth]=0
+coin[htt]=0
+coin[thh]=0
+coin[tht]=0
+coin[tth]=0
+coin[ttt]=0
+
+hhh=0
+hht=1
+hth=2
+htt=3
+thh=4
+tht=5
+tth=6
+ttt=7
+
+for (( i=1; i<=$x; i++ ))
+do
+        rand2=$(( RANDOM % 8 ))
+
+if [ $rand2 -eq $hhh ]
+then
+         coin[hhh]=$(( "${coin[hhh]}" + 1 ))
+fi
+if [ $rand2 -eq $hht ]
+then
+        coin[hht]=$(( "${coin[hht]}" + 1 ))
+fi
+if [ $rand2 -eq $hth ]
+then
+         coin[hth]=$(( "${coin[hth]}" + 1 ))
+fi
+if [ $rand2 -eq $htt ]
+then
+         coin[htt]=$(( "${coin[htt]}" + 1 ))
+fi
+
+if [ $rand2 -eq $thh ]
+then
+         coin[thh]=$(( "${coin[thh]}" + 1 ))
+fi
+if [ $rand2 -eq $tht ]
+then
+        coin[tht]=$(( "${coin[tht]}" + 1 ))
+fi
+if [ $rand2 -eq $tth ]
+then
+         coin[tth]=$(( "${coin[tth]}" + 1 ))
+fi
+if [ $rand2 -eq $ttt ]
+then
+         coin[ttt]=$(( "${coin[ttt]}" + 1 ))
+fi
+done
+
+c_hhh=`awk "BEGIN {print (${coin[hhh]}*100)/$x}"`
+c_hht=`awk "BEGIN {print (${coin[hht]}*100)/$x}"`
+c_hth=`awk "BEGIN {print (${coin[hth]}*100)/$x}"`
+c_htt=`awk "BEGIN {print (${coin[htt]}*100)/$x}"`
+c_thh=`awk "BEGIN {print (${coin[thh]}*100)/$x}"`
+c_tht=`awk "BEGIN {print (${coin[tht]}*100)/$x}"`
+c_tth=`awk "BEGIN {print (${coin[tth]}*100)/$x}"`
+c_ttt=`awk "BEGIN {print (${coin[ttt]}*100)/$x}"`
+echo "(hhh)  percentage" $c_hhh
+echo "(hht)  percentage" $c_hht
+echo "(hth)  percentage" $c_hth
+echo "(htt)  percentage" $c_htt
+echo "(thh)  percentage" $c_thh
+echo "(tht)  percentage" $c_tht
+echo "(tth)  percentage" $c_tth
+echo "(ttt)  percentage" $c_ttt
